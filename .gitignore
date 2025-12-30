@@ -1,0 +1,12 @@
+.env
+node_modules/
+client/node_modules/
+client/build/
+server/uploads/*
+!server/uploads/.gitkeep
+*.log
+.DS_Store
+coverage/
+.vscode/
+*.swp
+*.swo

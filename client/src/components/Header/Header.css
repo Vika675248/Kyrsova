@@ -1,0 +1,398 @@
+/* ==========================================
+   Header Component Styles
+   ========================================== */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-color);
+  box-shadow: var(--shadow-sm);
+  z-index: 1000;
+}
+
+/* Make container fill header height so children can center vertically */
+.header .container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+}
+
+/* Логотип */
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+}
+
+.header-logo:hover {
+  opacity: 0.8;
+  color: var(--primary-color);
+}
+
+.logo-icon {
+  font-size: 1.5rem;
+}
+
+.logo-text {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Навігація */
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xl);
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.nav-list li {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.nav-link {
+  position: relative;
+  padding: 0 var(--spacing-md);
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--primary-color);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: width var(--transition-normal);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Авторизація */
+.header-auth {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+/* Меню користувача */
+.user-menu {
+  position: relative;
+}
+
+.user-menu-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: 0.15rem 0.25rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-full);
+  transition: background-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.user-menu-toggle:hover {
+  background-color: rgba(26,54,93,0.06);
+}
+
+.user-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  color: white;
+  font-weight: 600;
+  border-radius: 50%;
+  font-size: 0.9rem;
+}
+
+.user-name {
+  display: none;
+  font-weight: 500;
+  color: var(--text-color);
+  max-width: 110px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+}
+
+.user-caret {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-left: var(--spacing-xs);
+}
+
+/* На великих екранах показувати ім'я поруч з аватаром */
+@media (min-width: 1024px) {
+  .user-name {
+    display: inline-block;
+  }
+  .user-menu-toggle {
+    padding: 0.2rem 0.5rem;
+  }
+}
+
+/* Випадаюче меню (компактне) */
+.user-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 180px;
+  background: var(--bg-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 0.25rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: all var(--transition-fast);
+  z-index: 1002;
+}
+
+.user-menu.open .user-dropdown,
+.user-menu:hover .user-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-link {
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-sm);
+}
+
+.dropdown-divider {
+  margin: 0.25rem 0;
+}
+
+/* Випадаюче меню */
+.user-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 200px;
+  background: var(--bg-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--spacing-sm);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all var(--transition-fast);
+}
+
+/* Показуємо через hover або відкритий стан (для кліка) */
+.user-menu:hover .user-dropdown,
+.user-menu.open .user-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-link {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  transition: background-color var(--transition-fast);
+  font-size: var(--font-size-sm);
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.dropdown-link:hover {
+  background-color: var(--gray-100);
+  color: var(--text-color);
+}
+
+.dropdown-link.logout {
+  color: var(--error-color);
+}
+
+.dropdown-link.logout:hover {
+  background-color: rgba(229, 62, 62, 0.1);
+}
+
+.dropdown-divider {
+  margin: var(--spacing-sm) 0;
+  border: none;
+  border-top: 1px solid var(--gray-200);
+}
+
+/* Кнопка мобільного меню */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 30px;
+  height: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--text-color);
+  transition: all var(--transition-fast);
+}
+
+.menu-toggle.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Адаптивність */
+@media (max-width: 1024px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  .header-nav {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: var(--spacing-xl);
+    background-color: var(--bg-color);
+    transform: translateX(100%);
+    transition: transform var(--transition-normal);
+    overflow-y: auto;
+  }
+
+  .header-nav.open {
+    transform: translateX(0);
+  }
+
+  .nav-list {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0;
+  }
+
+  .nav-link {
+    display: block;
+    padding: var(--spacing-md);
+    font-size: var(--font-size-lg);
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .nav-link::after {
+    display: none;
+  }
+
+  .header-auth {
+    flex-direction: column;
+    width: 100%;
+    margin-top: var(--spacing-lg);
+  }
+
+  .header-auth .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .user-menu {
+    width: 100%;
+  }
+
+  .user-menu-toggle {
+    width: 100%;
+    justify-content: center;
+    padding: var(--spacing-md);
+  }
+
+  .user-dropdown {
+    position: static;
+    opacity: 0;
+    visibility: hidden;
+    transform: none;
+    box-shadow: none;
+    padding: 0;
+    margin-top: var(--spacing-sm);
+  }
+  .user-menu.open .user-dropdown {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-text {
+    display: none;
+  }
+
+  .logo-icon {
+    font-size: 2rem;
+  }
+}

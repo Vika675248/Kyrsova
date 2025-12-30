@@ -1,0 +1,358 @@
+.history-page {
+  padding: 2rem 0;
+  min-height: 100vh;
+  background: var(--bg-primary);
+}
+
+/* Заголовок */
+.page-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+/* Форма пошуку */
+.search-section {
+  max-width: 600px;
+  margin: 0 auto 3rem;
+}
+
+.search-form {
+  display: flex;
+  gap: 1rem;
+}
+
+.search-input-group {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  font-size: 1.2rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 1rem 1rem 1rem 3rem;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  font-size: 1.1rem;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: border-color 0.3s;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.search-input::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Результати */
+.history-results {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.results-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.results-header h2 {
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.results-header p {
+  color: var(--text-secondary);
+}
+
+/* Таймлайн */
+.history-timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.timeline-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20px;
+}
+
+.marker-dot {
+  width: 16px;
+  height: 16px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  border: 3px solid var(--bg-primary);
+  box-shadow: 0 0 0 3px var(--primary-color);
+}
+
+.marker-line {
+  flex: 1;
+  width: 2px;
+  background: var(--border-color);
+  margin: 0.5rem 0;
+}
+
+.timeline-content {
+  flex: 1;
+  padding-bottom: 2rem;
+}
+
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.timeline-date {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.timeline-status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.85rem;
+}
+
+.timeline-status.status-completed {
+  background: rgba(40, 167, 69, 0.2);
+  color: var(--success-color);
+}
+
+.timeline-status.status-in-progress {
+  background: var(--primary-light);
+  color: var(--primary-color);
+}
+
+.timeline-status.status-cancelled {
+  background: rgba(220, 53, 69, 0.2);
+  color: var(--danger-color);
+}
+
+/* Картка таймлайну */
+.timeline-card {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.timeline-card h3 {
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.timeline-card .service-category {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.timeline-details {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: var(--bg-primary);
+  border-radius: 8px;
+}
+
+.timeline-details .detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.timeline-details .label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.timeline-details .value {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.timeline-notes {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.timeline-notes strong {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.timeline-notes p {
+  color: var(--text-primary);
+}
+
+.timeline-photos {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.timeline-photos img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.more-photos {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.timeline-rating {
+  margin-top: 1rem;
+}
+
+.timeline-rating .star {
+  font-size: 1.2rem;
+  color: var(--border-color);
+}
+
+.timeline-rating .star.active {
+  color: #ffc107;
+}
+
+/* Інформаційний блок */
+.info-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.info-card {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.info-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.info-card h3 {
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.info-card ol,
+.info-card ul {
+  text-align: left;
+  padding-left: 1.5rem;
+}
+
+.info-card li {
+  padding: 0.5rem 0;
+  color: var(--text-primary);
+}
+
+.info-card p {
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Порожній стан */
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.empty-icon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+  color: var(--text-secondary);
+}
+
+/* Завантаження */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+  .page-header h1 {
+    font-size: 2rem;
+  }
+
+  .search-form {
+    flex-direction: column;
+  }
+
+  .info-section {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-details {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .timeline-photos img {
+    width: 60px;
+    height: 60px;
+  }
+}

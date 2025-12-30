@@ -1,0 +1,21 @@
+# Шаблон render.yaml для автоматичного створення сервісу (заповніть значення або налаштуйте у веб-інтерфейсі Render)
+# Документація: https://render.com/docs/render-yaml
+
+services:
+  - type: web
+    name: autoservice
+    env: node
+    plan: starter # або ваш тариф
+    branch: main
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    envVars:
+      - key: MONGODB_URI
+        value: ""
+      - key: JWT_SECRET
+        value: ""
+      - key: JWT_EXPIRE
+        value: "7d"
+      - key: REACT_APP_API_URL
+        value: ""
+# Якщо вам потрібен persistent disk для uploads, створіть диск у Render і змініть конфігурацію завантаження у server/upload.js відповідно.

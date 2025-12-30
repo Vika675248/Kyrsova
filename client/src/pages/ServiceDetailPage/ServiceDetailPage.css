@@ -1,0 +1,310 @@
+.service-detail-page {
+  padding: 2rem 0;
+  min-height: 100vh;
+  background: var(--bg-primary);
+}
+
+/* Хлібні крихти */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.breadcrumb button {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-size: inherit;
+}
+
+.breadcrumb button:hover {
+  text-decoration: underline;
+}
+
+/* Контент */
+.service-detail-content {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 2rem;
+}
+
+/* Основна інформація */
+.service-main {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.service-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.service-icon {
+  font-size: 3rem;
+  background: var(--primary-light);
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+.service-category {
+  display: inline-block;
+  background: var(--primary-color);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.service-main h1 {
+  font-size: 2rem;
+  color: var(--text-primary);
+}
+
+.service-description {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+/* Характеристики */
+.service-features {
+  display: flex;
+  gap: 2rem;
+  padding: 1.5rem;
+  background: var(--bg-primary);
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.feature-icon {
+  font-size: 2rem;
+}
+
+.feature-label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.feature-value {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Що включено */
+.service-includes h3 {
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.service-includes ul {
+  list-style: none;
+  padding: 0;
+}
+
+.service-includes li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.service-includes li:last-child {
+  border-bottom: none;
+}
+
+.check-icon {
+  color: var(--success-color);
+  font-weight: bold;
+}
+
+/* Бокова панель */
+.service-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Картка ціни */
+.price-card {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  position: sticky;
+  top: 100px;
+}
+
+.price-header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.price-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.price-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.price-info {
+  background: var(--bg-primary);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.price-info p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.price-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-info {
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.contact-info p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.phone-link {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.phone-link:hover {
+  text-decoration: underline;
+}
+
+/* Картка переваг */
+.benefits-card {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.benefits-card h4 {
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.benefits-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.benefits-card li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.benefits-card li span {
+  color: var(--success-color);
+  font-weight: bold;
+}
+
+/* Стани */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.error-state {
+  text-align: center;
+  padding: 3rem;
+}
+
+.error-icon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.error-state h2 {
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
+
+/* Адаптивність */
+@media (max-width: 1024px) {
+  .service-detail-content {
+    grid-template-columns: 1fr;
+  }
+
+  .service-sidebar {
+    order: -1;
+  }
+
+  .price-card {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .service-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .service-main h1 {
+    font-size: 1.5rem;
+  }
+
+  .service-features {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .breadcrumb {
+    flex-wrap: wrap;
+  }
+}

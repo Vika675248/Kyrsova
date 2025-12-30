@@ -1,0 +1,13 @@
+export { default as HomePage } from './HomePage/HomePage';
+export { default as ServicesPage } from './ServicesPage/ServicesPage';
+export { default as ServiceDetailPage } from './ServiceDetailPage/ServiceDetailPage';
+export { default as CalculatorPage } from './CalculatorPage/CalculatorPage';
+export { default as BookingPage } from './BookingPage/BookingPage';
+export { default as LoginPage } from './LoginPage/LoginPage';
+export { default as RegisterPage } from './RegisterPage/RegisterPage';
+export { default as ProfilePage } from './ProfilePage/ProfilePage';
+export { default as AppointmentsPage } from './AppointmentsPage/AppointmentsPage';
+export { default as AppointmentDetailPage } from './AppointmentDetailPage/AppointmentDetailPage';
+export { default as HistoryPage } from './HistoryPage/HistoryPage';
+export { default as ContactsPage } from './ContactsPage/ContactsPage';
+export { default as NotFoundPage } from './NotFoundPage/NotFoundPage';
