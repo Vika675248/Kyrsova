@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Service = require('./models/Service');
 const User = require('./models/User');
+const Appointment = require('./models/Appointment');
 require('dotenv').config();
 
 /**

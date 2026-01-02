@@ -439,42 +439,55 @@ const addRating = asyncHandler(async (req, res) => {
 /**
  * @desc    Отримати історію ремонтів авто
  * @route   GET /api/appointments/history/:licensePlate
- * @access  Private
+ * @access  Public
  */
 const getCarHistory = asyncHandler(async (req, res) => {
   const { licensePlate } = req.params;
 
+  if (!licensePlate) {
+    return res.status(400).json({
+      success: false,
+      message: 'Введіть держ. номер'
+    });
+  }
+
+  // Шукаємо всі записи з цим номером (не тільки поточного користувача)
   const appointments = await Appointment.find({
-    user: req.user.id,
-    'car.licensePlate': licensePlate,
-    status: 'completed'
+    'car.licensePlate': licensePlate.toUpperCase()
   })
+    .populate('user', 'name email phone')
     .populate('services.service')
-    .sort('-completedAt');
+    .sort('-appointmentDate');
+
+  // Фільтруємо завершені та в процесі
+  const visibleAppointments = appointments.filter(app => 
+    ['completed', 'in-progress'].includes(app.status)
+  );
 
   // Статистика
   const stats = {
-    totalVisits: appointments.length,
-    totalSpent: appointments.reduce((sum, app) => sum + app.finalPrice, 0),
-    services: {}
+    totalVisits: visibleAppointments.length,
+    totalSpent: visibleAppointments.reduce((sum, app) => sum + (app.finalPrice || app.totalPrice || 0), 0),
+    services: {},
+    lastVisit: visibleAppointments.length > 0 ? visibleAppointments[0].appointmentDate : null
   };
 
   // Підрахунок послуг
-  appointments.forEach(app => {
+  visibleAppointments.forEach(app => {
     app.services.forEach(s => {
       const serviceName = s.service?.name || 'Невідома послуга';
       if (!stats.services[serviceName]) {
         stats.services[serviceName] = { count: 0, totalCost: 0 };
       }
-      stats.services[serviceName].count += s.quantity;
-      stats.services[serviceName].totalCost += s.price;
+      stats.services[serviceName].count += (s.quantity || 1);
+      stats.services[serviceName].totalCost += (s.price || 0);
     });
   });
 
   res.status(200).json({
     success: true,
     data: {
-      appointments,
+      appointments: visibleAppointments,
       stats
     }
   });

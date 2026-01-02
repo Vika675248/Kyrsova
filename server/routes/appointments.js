@@ -26,6 +26,13 @@ const {
 router.get('/slots/:date', getAvailableSlots);
 
 /**
+ * @route   GET /api/appointments/history/:licensePlate
+ * @desc    Отримати історію ремонтів авто
+ * @access  Public
+ */
+router.get('/history/:licensePlate', getCarHistory);
+
+/**
  * @route   GET /api/appointments/my
  * @desc    Отримати записи поточного користувача
  * @access  Private
@@ -38,13 +45,6 @@ router.get('/my', protect, getMyAppointments);
  * @access  Private
  */
 router.get('/', protect, getAppointments);
-
-/**
- * @route   GET /api/appointments/history/:licensePlate
- * @desc    Отримати історію ремонтів авто
- * @access  Private
- */
-router.get('/history/:licensePlate', protect, getCarHistory);
 
 /**
  * @route   GET /api/appointments/:id

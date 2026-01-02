@@ -9,8 +9,10 @@ import './HistoryPage.css';
 const HistoryPage = () => {
   const [licensePlate, setLicensePlate] = useState('');
   const [history, setHistory] = useState([]);
+  const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(false);
   const [searched, setSearched] = useState(false);
+  const [error, setError] = useState(null);
 
   // Пошук
   const handleSearch = async (e) => {
@@ -20,13 +22,18 @@ const HistoryPage = () => {
 
     setLoading(true);
     setSearched(true);
+    setError(null);
     try {
-      const response = await appointmentService.getHistory(licensePlate);
-      // API повертає { appointments: [...], stats: {...} }
-      setHistory(response.appointments || []);
+      const response = await appointmentService.getHistory(licensePlate.toUpperCase());
+      // API повертає { success: true, data: { appointments: [...], stats: {...} } }
+      const data = response.data || response;
+      setHistory(data.appointments || []);
+      setStats(data.stats || null);
     } catch (error) {
       console.error('Error fetching history:', error);
       setHistory([]);
+      setStats(null);
+      setError(error.response?.data?.message || 'Помилка при завантаженні історії');
     } finally {
       setLoading(false);
     }
@@ -86,6 +93,11 @@ const HistoryPage = () => {
           <div className="loading-container">
             <div className="loader"></div>
           </div>
+        ) : error ? (
+          <div className="error-message">
+            <span className="error-icon">⚠️</span>
+            <p>{error}</p>
+          </div>
         ) : searched ? (
           history.length > 0 ? (
             <div className="history-results">
@@ -93,6 +105,35 @@ const HistoryPage = () => {
                 <h2>Знайдено записів: {history.length}</h2>
                 <p>Держ. номер: {licensePlate}</p>
               </div>
+
+              {/* Статистика */}
+              {stats && (
+                <div className="stats-cards">
+                  <div className="stat-card">
+                    <span className="stat-icon">🔧</span>
+                    <div className="stat-content">
+                      <span className="stat-value">{stats.totalVisits}</span>
+                      <span className="stat-label">Візитів</span>
+                    </div>
+                  </div>
+                  <div className="stat-card">
+                    <span className="stat-icon">💰</span>
+                    <div className="stat-content">
+                      <span className="stat-value">{stats.totalSpent.toLocaleString()} грн</span>
+                      <span className="stat-label">Витрачено</span>
+                    </div>
+                  </div>
+                  <div className="stat-card">
+                    <span className="stat-icon">📅</span>
+                    <div className="stat-content">
+                      <span className="stat-value">
+                        {stats.lastVisit ? formatDate(stats.lastVisit) : 'Немає'}
+                      </span>
+                      <span className="stat-label">Останній візит</span>
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {/* Таймлайн */}
               <div className="history-timeline">
@@ -115,6 +156,22 @@ const HistoryPage = () => {
                         <h3>{item.services?.[0]?.service?.name || 'Невідома послуга'}</h3>
                         <p className="service-category">{item.services?.[0]?.service?.category || 'Послуга'}</p>
                         
+                        {/* Всі послуги */}
+                        {item.services && item.services.length > 1 && (
+                          <div className="all-services">
+                            <strong>Виконані роботи:</strong>
+                            <ul>
+                              {item.services.map((s, idx) => (
+                                <li key={idx}>
+                                  {s.service?.name || 'Невідома послуга'} 
+                                  {s.quantity > 1 && ` (x${s.quantity})`}
+                                  - {s.price} грн
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                        
                         <div className="timeline-details">
                           <div className="detail-item">
                             <span className="label">Пробіг:</span>
@@ -125,6 +182,13 @@ const HistoryPage = () => {
                             <span className="value">{item.finalPrice || item.totalPrice || 0} грн</span>
                           </div>
                         </div>
+
+                        {item.customerNote && (
+                          <div className="timeline-notes">
+                            <strong>Примітки клієнта:</strong>
+                            <p>{item.customerNote}</p>
+                          </div>
+                        )}
 
                         {item.mechanicNote && (
                           <div className="timeline-notes">
